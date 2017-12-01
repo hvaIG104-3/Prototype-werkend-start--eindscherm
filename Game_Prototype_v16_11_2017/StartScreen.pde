@@ -6,7 +6,7 @@ class StartScreen {
   //declareert verschillende PFont (PFont is font class voor Processing
   PFont title;
   PFont startText;
-
+ 
 
 
   void setup() {

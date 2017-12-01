@@ -1,15 +1,19 @@
 //class zorgt ervoor dat je bij game over een endscreen hebt met mogelijke meer keuzes
 //op dit moment alleen keuze voor terug naar startscreen.
 
-//Update:
+//Update: Heb de tekst vervangen door afbeeldingen gemaakt via: https://textcraft.net/ Tekst kan terug gezet worden
 
 class EndScreen {
-  //declareert startscreen als afbeelding 
-  PImage startScreen;
-  //declareert title als een font
+  //declareren van een font
   PFont gameOver;
   PFont endText; 
   PFont scoreText;
+
+  //declareren van afbeeldingen
+  PImage exitImage;
+  PImage againImage;
+  PImage scoreBoardImage;  
+PImage gameOverImage;
 
   void setup() {
     //laad de afbeelding in het mapje met met naam startScreen.jpg
@@ -20,6 +24,10 @@ class EndScreen {
     gameOver = loadFont("gameOverFont.vlw");
     endText = loadFont("endTextFont.vlw");
     scoreText = loadFont("scoreTextFont.vlw");
+    exitImage = loadImage("exit.png");
+    againImage = loadImage("try-again.png");
+    scoreBoardImage = loadImage("scoreboard.png");
+    gameOverImage = loadImage("game-over.png");
   }
 
   void init() {
@@ -33,26 +41,36 @@ class EndScreen {
 
 
   void draw() {
-    textAlign(CENTER);
+    //gameover    
+    image(gameOverImage, 214, 150, 371,58);
+    /*textAlign(CENTER);
     fill(255, 3, 3);
     textFont(gameOver);
     text("Game Over", 400, 225);
+    */
+    //Score
     textFont(scoreText);
     text(round(punten), 400, 300);
-    textFont(endText);
-    text("TRY AGAIN PRESS LEFT", 200, 400);
-    text("EXIT PRESS RIGHT", 600, 400);
-    //text("SCOREBOARD PRESS UP", 400, 375);
-    //keycode left zorgt ervoor dat je terug gaat naar stage 1 uiteindelijk
-    if (keyCode == LEFT) {      
+    //opties
+    image(againImage, 80, 425, 217, 102); //opnieuw
+    image(exitImage, 430, 415, 243, 108); //exit
+    image(scoreBoardImage, 193, 350, 415, 51);  //Scoreboard/highscore
+    
+    /*textFont(endText);
+    //text("TRY AGAIN PRESS LEFT", 200, 450);
+    //text("EXIT PRESS RIGHT", 600, 450);
+    //text("SCOREBOARD PRESS S", 400, 400);
+    */
+   
+    if (keyCode == LEFT) {     //keycode left zorgt ervoor dat je terug gaat naar stage 1 (startscherm
       again = 1; //gaat terug naar startscherm
-    } else if (keyCode == RIGHT) {
+    } else if (keyCode == RIGHT) {//keycode left zorgt voor exit
       exit(); //
-    } else if (keyCode == UP) {
+    } else if (keyCode == 'S') { //keycode S zorgt ervoor dat naar stage 4 (scoreboard) gaat
       again = 2;
     }
     //stopt intro sound//
-file.stop();
+    file.stop();
   }
 
   void update() {

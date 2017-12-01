@@ -9,6 +9,7 @@ StartScreen start = new StartScreen();
 EndScreen end= new EndScreen();
 Score score = new Score();
 ScoreBoard scoreBoard = new ScoreBoard();
+
 float punten;
 int stage = 1;
 int again;
@@ -23,6 +24,7 @@ PImage pow2;
 PImage pow3;
 PImage pow4;
 PImage plyr;
+PImage startScreen;
 
 import processing.sound.*;
 //Sound Files//
@@ -128,7 +130,9 @@ void keyPressed() {
   } else if (keyCode =='E') {
     exit();
   } else if (keyCode =='M') { //stopt de muziek
-    //music.stop();
+    file.stop();
+  } else if (keyCode == 'Q') { //zorgt dat je doorgaat naar eindscherm
+    stage = 3;
   }
 }
 
@@ -156,36 +160,39 @@ void drawGame() {
 }
 
 void draw() {
-
+  //startscherm
   if (stage ==1) {
     //haalt de setup en draw uit StartScreen
     start.setup();
     start.draw();
     //zorgt er voor dat elkaar als game start je na game over eerst naar endscreen gaat
   }
+  //de game zelf
   if (stage ==2) {
     drawGame();
     updateGame();
     keyPressed();
     keyReleased();
   }
+  //Eindscherm
   if ( stage ==3) {
     again = 0;
     //haalt de setup en draw uit EndScreen
     end.setup();
     end.draw();
-    //vanuit de return van end.init() gaat hij naar juiste scherm, op dit moment nog alleen reset van game (werkt nog niet altijd even goed) 
-    if (again == 1) {
+    if (again == 1) { //zorgt dat je word terug gezet naar beginscherm en opnieuw kan spelen
       score.reset();
       setup();
       stage =1;
-    } else if (again ==2) {
+    } else if (again ==2) {//zorgt ervoor dat je naar het Scoreboard gaat
       stage = 4;
     }
+    //scoreboard/highscore
     if (stage == 4) {
+      score.draw();
       scoreBoard.highScore();
-      scoreBoard.draw(); 
-      if (again == 3) {
+      scoreBoard.draw();
+      if (again ==3) {//zorgt ervoor dat je terugkeert naar eindscherm
         stage = 3;
       }
     }
