@@ -1,15 +1,12 @@
 class Pu_exp {
   int numObstac = 1;
-  float posX [] = new float [numObstac];
-  float posY [] = new float [numObstac];
+  float posX ;
+  float posY;
   int velX, velY, h, w;
 
   void init() {
-    //De loop dat de boost in een random lane terechtkomen
-    for (int i = 0; i < numObstac; i++) {
-      posY[i] = lanes[(int) random(lanes.length)];
-      posX[i] = random(100, width);
-    }
+      posY= lanes[(int) random(lanes.length)] +35;
+      posX = random(100, width);
 
     h = 30;
     w = 30;
@@ -18,21 +15,19 @@ class Pu_exp {
 
   void draw() {
     //Het aanmaken van de power-up Extra points
-    for (int i = 0; i < numObstac; i++) {
-    //fill(0,255,255);
-  //rect(posX[i], posY[i],w,h);
-  image(pow4, posX[i], posY[i],w,h);
-  posX[i] += velX;
+
+  image(pow4, posX, posY,w,h);
+  posX += velX;
 
       //Als de power-up Extra points voorbij de speler gaat spawned hij weer in een random lane
-      if (posX[i] < 0) {
+      if (posX < -w) {
         posY[i] = lanes[(int) random(lanes.length)];
         posX[i] = width;
       }
       //Als de speler collide met de boost, dan krijgt hij 250 punten
-      if (player.posX + player.w == posX[i] && player.posX <= posX[i] + w && player.posY == posY[i]) {
+      if (!(player.posX + player.w < posX || player.posY > posY + h|| player.posY+player.h < posY)) {
         punten += 250;
-        posX[i] = width;
+        posX = width;
         
         //sound effect//
           file3.play();
