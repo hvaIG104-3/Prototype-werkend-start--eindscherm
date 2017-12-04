@@ -21,8 +21,8 @@ class Pu_exp {
 
       //Als de power-up Extra points voorbij de speler gaat spawned hij weer in een random lane
       if (posX < -w) {
-        posY[i] = lanes[(int) random(lanes.length)];
-        posX[i] = width;
+        posY = lanes[(int) random(lanes.length)];
+        posX = width;
       }
       //Als de speler collide met de boost, dan krijgt hij 250 punten
       if (!(player.posX + player.w < posX || player.posY > posY + h|| player.posY+player.h < posY)) {
@@ -35,5 +35,3 @@ class Pu_exp {
     }
   }
 
-  void update() {
-  }
