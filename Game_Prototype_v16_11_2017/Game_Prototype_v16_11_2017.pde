@@ -130,7 +130,6 @@ obstacle1[i].init();}
 void updateGame() {
   player.update();
   enemies.update();
-  exp.update();
   slow.update();
   lives.update();
   livespu.update();
