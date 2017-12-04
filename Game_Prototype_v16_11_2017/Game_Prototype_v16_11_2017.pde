@@ -6,7 +6,8 @@
 // Ik heb in de class Lives de exit vervangen voor stage=3 zodat bij game over naar Endscreen gaat
 // Map data is gesorteerd. voor images ("Images/naamImage"), voor Fonts ("Fonts/naamfonts"), voor .txt ("Data/Text/naam.txt")
 
-Obstacles obstacle1 =new Obstacles();
+ParticleSystem jetpackParticle = new ParticleSystem(width/2,height/2);
+Obstacles obstacle1 [] =new Obstacles[100];
 Player player = new Player();
 Enemy enemies = new Enemy();
 Pu_exp exp = new Pu_exp();        
@@ -21,6 +22,7 @@ ScoreBoard scoreBoard = new ScoreBoard();
 float punten;
 int stage = 1;
 int again;
+int numObjectBegin=6;
 float[] lanes = new float[6];
 
 //images//
@@ -59,13 +61,33 @@ void setup() {
   background(51);
   player.init();
   lives.init();
-  obstacle1.init();
   enemies.init();
   exp.init();
   slow.init();
   livespu.init();
   end.init();
   scoreBoard.init();
+  //De jetpackparticle initialisatie
+  jetpackParticle= new ParticleSystem(width/2, height/2);
+jetpackParticle.spreadFactor=0.3916084;
+jetpackParticle.minSpeed=1.0;
+jetpackParticle.maxSpeed=1.0;
+jetpackParticle.startVx=-0.07692307;
+jetpackParticle.startVy=0.7482517;
+jetpackParticle.particleShape="ellipse";
+jetpackParticle.emitterType="point";
+jetpackParticle.birthSize=10.0;
+jetpackParticle.deathSize=23.846153;
+jetpackParticle.gravity=0.044055946;
+jetpackParticle.birthColor=color(255.0,98.0,0.0,230.0);
+jetpackParticle.deathColor=color(206.0,0.0,0.0,0.0);
+jetpackParticle.blendMode="add";
+jetpackParticle.framesToLive=53;
+  
+      //Deze loop zorgt ervoor dat er 100 objecten worden aangemaakt en geinitialiseerd.
+ for (int i = 0; i<100; i++){
+  obstacle1[i]=new Obstacles();
+obstacle1[i].init();}
 
   lanes[0] = 0;
   lanes[1] = 100;
@@ -115,6 +137,7 @@ void updateGame() {
   start.update();
   end.update();
   score.update();
+  jetpackParticle.update();
 
   if (player.posY < 0) {
     player.posY = 0;
@@ -152,13 +175,31 @@ void keyReleased() {
 void drawGame() {
   background(bg1);
   player.draw();
-  obstacle1.draw();
+  //Tekent de obstakels
+  for(int i=0;i<numObjectBegin;i++){
+  obstacle1[i].draw();}
+  //na 100 punten komen er 4 obstakels bij
+  if(punten >= 100){
+  for(int i = numObjectBegin;  i< numObjectBegin + 4; i++){
+ obstacle1[i].draw(); }
+  if(punten >= 350){
+  }for(int i = numObjectBegin;  i< numObjectBegin + 4; i++){
+ obstacle1[i].draw();}
+ if(punten >= 1000){
+  }for(int i = numObjectBegin;  i< numObjectBegin + 4; i++){
+ obstacle1[i].draw();}
+ if(punten >= 1400){
+  }for(int i = numObjectBegin;  i< numObjectBegin + 4; i++){
+ obstacle1[i].draw();}
+   
+  
   enemies.draw();
   exp.draw();
   slow.draw();
   lives.draw();
   livespu.draw();
   score.draw();
+    jetpackParticle.draw();
   textAlign(RIGHT);
   textSize(25);
   text("P = Pause", 790, 52);
