@@ -33,7 +33,6 @@ class Pu_slow {
         //sound effect//
           file3.play();
       }
-    }
     t++;
     if (t > 300) {
 for(int i=0; i < numObjectBegin;i++){
