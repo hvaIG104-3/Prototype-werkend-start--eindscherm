@@ -8,7 +8,6 @@ class Pu_slow {
     //De loop dat de boost in een random lane terechtkomen
       posY = lanes[(int) random(lanes.length)] + 35;
       posX = random(100, width);
-    }
 
     h = 30;
     w = 30;
