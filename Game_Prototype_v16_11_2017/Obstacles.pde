@@ -10,7 +10,6 @@ public class Obstacles {
   float[] lanes2 = new float[]{800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300,1350,1400,1450,1500,1550,1600};
   void init() {
     //deze loop bepaald waar de enemies terechtkomen bij de start
-    for (int i = 0; i < numObstac; i++) {
       posY= lanes[(int) random(lanes.length)] + 25;
       posX= lanes2[(int) random(lanes2.length)];
 
@@ -18,7 +17,6 @@ public class Obstacles {
       if (posX <= posX + 250 && posX >= posX - 250) {
         posX= lanes2[(int) random(lanes2.length)];
       }
-    }
 
 
     h = 50; //De hoogte van het object
@@ -28,7 +26,7 @@ public class Obstacles {
 
   void draw() {
     //Hier worden de obstakels aangemaakt
-     image(img2, posX[i], posY[i],w,h);
+     image(img2, posX, posY,w,h);
       posX += velX;
 
 
