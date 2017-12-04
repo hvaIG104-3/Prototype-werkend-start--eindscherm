@@ -26,7 +26,7 @@ public class Enemy {
   posX[i] += velX;
 
       //Als de enemy voorbij de speler gaat spawned hij weer in een random lane
-      if (posX[i] <= 0) {
+      if (posX[i] <= -w) {
         posY[i] = lanes[(int) random(lanes.length)];
         posX[i] = width;
       }
