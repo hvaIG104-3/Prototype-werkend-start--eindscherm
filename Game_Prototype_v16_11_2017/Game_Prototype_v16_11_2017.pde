@@ -1,3 +1,11 @@
+// Updates Prototype:
+// Ik heb in de main de classes Lives en Powerup_Lives toegevoegd aan de setup, update en draw
+// Ik heb de class Lives en Powerup_Lives aangemaakt
+// Ik heb in de classes Enemy en Obstacles interacties op de levenspunten toegevoegd (wat er gebeurt als de player een object aanraakt)
+// Ik heb in Game_Prototype draw() ingericht in stages en heb de classes StartScreen en EndScreen aangemaakt (siebe)
+// Ik heb in de class Lives de exit vervangen voor stage=3 zodat bij game over naar Endscreen gaat
+// Map data is gesorteerd. voor images ("Images/naamImage"), voor Fonts ("Fonts/naamfonts"), voor .txt ("Data/Text/naam.txt")
+
 Obstacles obstacle1 =new Obstacles();
 Player player = new Player();
 Enemy enemies = new Enemy();
@@ -67,14 +75,14 @@ void setup() {
   lanes[5] = 500;
 
   // Images must be in the "data" directory to load correctly
-  img = loadImage("enemy.png");
-  img2 = loadImage("collision.png"); 
-  bg1 = loadImage("bg1.jpg");   
-  bg2 = loadImage("bg2.jpg");   
-  pow2 = loadImage("powt.png");  
-  pow3 = loadImage("powh.png");  
-  pow4 = loadImage("pow4.png");   
-  plyr = loadImage("plyr.png"); 
+  img = loadImage("Images/enemy.png");
+  img2 = loadImage("Images/collision.png"); 
+  bg1 = loadImage("Images/bg1.jpg");   
+  bg2 = loadImage("Images/bg2.jpg");   
+  pow2 = loadImage("Images/powt.png");  
+  pow3 = loadImage("Images/powh.png");  
+  pow4 = loadImage("Images/pow4.png");   
+  plyr = loadImage("Images/plyr.png"); 
 
   //inladen van soundfile uit de main map//
   //sound 1//

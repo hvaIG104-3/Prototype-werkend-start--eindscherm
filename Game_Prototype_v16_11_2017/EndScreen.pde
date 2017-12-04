@@ -17,17 +17,17 @@ PImage gameOverImage;
 
   void setup() {
     //laad de afbeelding in het mapje met met naam startScreen.jpg
-    startScreen = loadImage("startScreen.jpg");
+    startScreen = loadImage("Images/startScreen.jpg");
     //geeft de grote aan de eerste 2 nullen weet ik niet precies wat is ik denk draai, de achterste 2 zijn de verhoudingen
     image(startScreen, 0, 0, 800, 600);
     //koppelt de juiste font aan de juiste PFont (via tools>lettertype maken, kan je een .vlw bestand maken met een font en grote)
-    gameOver = loadFont("gameOverFont.vlw");
-    endText = loadFont("endTextFont.vlw");
-    scoreText = loadFont("scoreTextFont.vlw");
-    exitImage = loadImage("exit.png");
-    againImage = loadImage("try-again.png");
-    scoreBoardImage = loadImage("scoreboard.png");
-    gameOverImage = loadImage("game-over.png");
+    gameOver = loadFont("Fonts/gameOverFont.vlw");
+    endText = loadFont("Fonts/endTextFont.vlw");
+    scoreText = loadFont("Fonts/scoreTextFont.vlw");
+    exitImage = loadImage("Images/exit.png");
+    againImage = loadImage("Images/try-again.png");
+    scoreBoardImage = loadImage("Images/scoreboard.png");
+    gameOverImage = loadImage("Images/game-over.png");
   }
 
   void init() {

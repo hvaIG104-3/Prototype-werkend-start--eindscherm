@@ -7,15 +7,15 @@ class ScoreBoard {
 void setup() {
   //zorgt voor achtergrond
     //laad de afbeelding in het mapje met met naam startScreen.jpg
-    startScreen = loadImage("startScreen.jpg");
+    startScreen = loadImage("Images/startScreen.jpg");
     //geeft de grote aan de eerste 2 nullen weet ik niet precies wat is ik denk draai, de achterste 2 zijn de verhoudingen
     image(startScreen, 0, 0, 800, 600);
-    highScoreText = loadFont("highScoreText.vlw");
+    highScoreText = loadFont("Fonts/highScoreText.vlw");
   }
 
   void init() {
     //geeft gegevens door aan de main
-    highScore = loadStrings("scoreBoard.txt");
+    highScore = loadStrings("Data/Text/scoreBoard.txt");
     if (again == 3) {
       again = 3;
     }
@@ -61,7 +61,7 @@ void highScore() {
       {
         scoreList+=highScore[i]+" ";
       }
-      saveStrings("scoreBoard.txt", highScore);
+      saveStrings("Data/Text/scoreBoard.txt", highScore);
     }
   }
 }
