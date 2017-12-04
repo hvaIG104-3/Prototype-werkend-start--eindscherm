@@ -207,6 +207,7 @@ void drawGame() {
   text("E = Exit", 790, 106);
   text("M = Sound OFF", 790, 131);
 }
+  }
 
 void draw() {
   //startscherm
