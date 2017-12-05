@@ -20,7 +20,11 @@ public class Obstacles {
 
     h = 48; //De hoogte van het object
     w = 48; // De breedte van het object
+<<<<<<< HEAD
     velX = random(-6,-4); //De snelheid waarmee de objecten bewegen
+=======
+    velX = -5; //De snelheid waarmee de objecten bewegen
+>>>>>>> 5a6f1ebf6fcd2b801b9c64cfbe6f1f536dc68a41
   }
 
   void draw() {
