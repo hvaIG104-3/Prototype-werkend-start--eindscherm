@@ -6,8 +6,8 @@
 // Ik heb in de class Lives de exit vervangen voor stage=3 zodat bij game over naar Endscreen gaat
 // Map data is gesorteerd. voor images ("Images/naamImage"), voor Fonts ("Fonts/naamfonts"), voor .txt ("Data/Text/naam.txt")
 
-ParticleSystem jetpackParticle = new ParticleSystem(width/2,height/2);
-Obstacles obstacle1 [] =new Obstacles[100];
+ParticleSystem jetpackParticle = new ParticleSystem(width/2, height/2);
+Obstacles obstacle1[] =new Obstacles[100];
 Player player = new Player();
 Enemy enemies = new Enemy();
 Pu_exp exp = new Pu_exp();        
@@ -20,10 +20,12 @@ Score score = new Score();
 ScoreBoard scoreBoard = new ScoreBoard();
 
 float punten;
+float points;
 int stage = 1;
 int again;
-int numObjectBegin=6;
+int numObjectBegin = 10;
 float[] lanes = new float[6];
+float[] lanes2 = new float[]{800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600};
 
 //images//
 PImage img;
@@ -68,27 +70,30 @@ void setup() {
   livespu.init();
   end.init();
   scoreBoard.init();
-  //De jetpackparticle initialisatie
   jetpackParticle= new ParticleSystem(width/2, height/2);
-jetpackParticle.spreadFactor=0.3916084;
-jetpackParticle.minSpeed=1.0;
-jetpackParticle.maxSpeed=1.0;
-jetpackParticle.startVx=-0.07692307;
-jetpackParticle.startVy=0.7482517;
-jetpackParticle.particleShape="ellipse";
-jetpackParticle.emitterType="point";
-jetpackParticle.birthSize=10.0;
-jetpackParticle.deathSize=23.846153;
-jetpackParticle.gravity=0.044055946;
-jetpackParticle.birthColor=color(255.0,98.0,0.0,230.0);
-jetpackParticle.deathColor=color(206.0,0.0,0.0,0.0);
-jetpackParticle.blendMode="add";
-jetpackParticle.framesToLive=53;
-  
-      //Deze loop zorgt ervoor dat er 100 objecten worden aangemaakt en geinitialiseerd.
- for (int i = 0; i<100; i++){
-  obstacle1[i]=new Obstacles();
-obstacle1[i].init();}
+  jetpackParticle.spreadFactor=0.3916084;
+  jetpackParticle.minSpeed=1.0;
+  jetpackParticle.maxSpeed=1.0;
+  jetpackParticle.startVx=-0.07692307;
+  jetpackParticle.startVy=0.7482517;
+  jetpackParticle.particleShape="ellipse";
+  jetpackParticle.emitterType="point";
+  jetpackParticle.birthSize=10.0;
+  jetpackParticle.deathSize=23.846153;
+  jetpackParticle.gravity=0.044055946;
+  jetpackParticle.birthColor=color(255.0, 98.0, 0.0, 230.0);
+  jetpackParticle.deathColor=color(206.0, 0.0, 0.0, 0.0);
+  jetpackParticle.blendMode="add";
+  jetpackParticle.framesToLive=53;
+  points = punten;
+
+
+  //Deze loop zorgt ervoor dat er 10 objecten worden aangemaakt en geinitialiseerd.
+  for (int i = 0; i<100; i++) {
+    obstacle1[i]=new Obstacles();
+    obstacle1[i].init();
+  }
+
 
   lanes[0] = 0;
   lanes[1] = 100;
@@ -97,7 +102,7 @@ obstacle1[i].init();}
   lanes[4] = 400;
   lanes[5] = 500;
 
-  // Images must be in the "data" directory to load correctly,
+  // Images must be in the "data" directory to load correctly
   img = loadImage("Images/enemy.png");
   img2 = loadImage("Images/collision.png"); 
   bg1 = loadImage("Images/bg1.jpg");   
@@ -105,7 +110,7 @@ obstacle1[i].init();}
   pow2 = loadImage("Images/powt.png");  
   pow3 = loadImage("Images/powh.png");  
   pow4 = loadImage("Images/pow4.png");   
-  plyr = loadImage("Images/plyr.png"); 
+  plyr = loadImage("Images/plyr.png");
 
   //inladen van soundfile uit de main map//
   //sound 1//
@@ -113,7 +118,7 @@ obstacle1[i].init();}
   //file = new SoundFile(this, path);
   file = new SoundFile(this, "Sound/starts.mp3");
   //sound 2//
- // path2 = sketchPath(audioName2);
+  // path2 = sketchPath(audioName2);
   file2 = new SoundFile(this, "Sound/loopt.mp3");
   //sound 2 start//
   file2.play();
@@ -130,10 +135,7 @@ obstacle1[i].init();}
 //Updating all classes
 void updateGame() {
   player.update();
-  enemies.update();
-  slow.update();
   lives.update();
-  livespu.update();
   start.update();
   end.update();
   score.update();
@@ -175,31 +177,75 @@ void keyReleased() {
 void drawGame() {
   background(bg1);
   player.draw();
-  //Tekent de obstakels
-  for(int i=0;i<numObjectBegin;i++){
-  obstacle1[i].draw();}
-  //na 100 punten komen er 4 obstakels bij
-  if(punten >= 100){
-  for(int i = numObjectBegin;  i< numObjectBegin + 4; i++){
- obstacle1[i].draw(); }
-  if(punten >= 350){
-  }for(int i = numObjectBegin;  i< numObjectBegin + 4; i++){
- obstacle1[i].draw();}
- if(punten >= 1000){
-  }for(int i = numObjectBegin;  i< numObjectBegin + 4; i++){
- obstacle1[i].draw();}
- if(punten >= 1400){
-  }for(int i = numObjectBegin;  i< numObjectBegin + 4; i++){
- obstacle1[i].draw();}
-   
-  
+  //teken de eerste obstakels
+  for (int i=0; i<numObjectBegin; i++) {
+    obstacle1[i].draw();
+  }
+  //bij 600 punten teken er vier bij
+  if (punten >= 150) {
+    for (int i = numObjectBegin; i< numObjectBegin + 1; i++) {
+      obstacle1[i].draw();
+    }
+  }
+  //bij 1250 nog meer
+  if (punten >= 300) {
+    for (int i = numObjectBegin+1; i< numObjectBegin + 2; i++) {
+      obstacle1[i].draw();
+    }
+  }
+  if (punten >= 450) {
+    for (int i = numObjectBegin+2; i< numObjectBegin + 3; i++) {
+      obstacle1[i].draw();
+    }
+  }
+  if (punten >= 600) {
+    for (int i = numObjectBegin+3; i< numObjectBegin + 4; i++) {
+      obstacle1[i].draw();
+    }
+  }
+  if (punten >= 750) {
+    for (int i = numObjectBegin+4; i< numObjectBegin + 5; i++) {
+      obstacle1[i].draw();
+    }
+  }
+  if (punten >= 900) {
+    for (int i = numObjectBegin+5; i< numObjectBegin + 6; i++) {
+      obstacle1[i].draw();
+    }
+  }
+  if (punten >= 1050) {
+    for (int i = numObjectBegin+6; i< numObjectBegin + 7; i++) {
+      obstacle1[i].draw();
+    }
+  }
+  if (punten >= 1200) {
+    for (int i = numObjectBegin+7; i< numObjectBegin + 8; i++) {
+      obstacle1[i].draw();
+    }
+  }
+  if (punten >= 1350) {
+    for (int i = numObjectBegin+8; i< numObjectBegin + 9; i++) {
+      obstacle1[i].draw();
+    }
+  }
+  if (punten >= 1500) {
+    for (int i = numObjectBegin+9; i< numObjectBegin + 10; i++) {
+      obstacle1[i].draw();
+    }
+  }
+  if (punten >= 2000) {
+    for (int i = numObjectBegin+10; i< numObjectBegin + 12; i++) {
+      obstacle1[i].draw();
+    }
+  }
+
   enemies.draw();
   exp.draw();
   slow.draw();
-  lives.draw();
   livespu.draw();
+  lives.draw();
   score.draw();
-    jetpackParticle.draw();
+  jetpackParticle.draw();
   textAlign(RIGHT);
   textSize(25);
   text("P = Pause", 790, 52);
@@ -207,7 +253,6 @@ void drawGame() {
   text("E = Exit", 790, 106);
   text("M = Sound OFF", 790, 131);
 }
-  }
 
 void draw() {
   //startscherm
