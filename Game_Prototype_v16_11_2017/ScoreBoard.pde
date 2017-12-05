@@ -15,7 +15,7 @@ void setup() {
 
   void init() {
     //geeft gegevens door aan de main
-    highScore = loadStrings("Data/Text/scoreBoard.txt");
+    highScore = loadStrings("scoreBoard.txt");
     if (again == 3) {
       again = 3;
     }
@@ -38,7 +38,7 @@ void setup() {
   }
 
 void highScore() {
-  //berekend de highscore en update het
+    //berekend de highscore en update het
     if (highScore.length<5)
     {
       highScore=append(highScore, str(punten)); //append vergroot een array en voegt nieuwe data toe//
@@ -61,7 +61,7 @@ void highScore() {
       {
         scoreList+=highScore[i]+" ";
       }
-      saveStrings("Data/Text/scoreBoard.txt", highScore);
+      saveStrings("scoreBoard.txt", highScore);
     }
   }
 }

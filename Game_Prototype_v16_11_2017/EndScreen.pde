@@ -1,7 +1,7 @@
 //class zorgt ervoor dat je bij game over een endscreen hebt met mogelijke meer keuzes
 //op dit moment alleen keuze voor terug naar startscreen.
 
-//Update: Heb de tekst vervangen door afbeeldingen gemaakt via: https://textcraft.net/ Tekst kan terug gezet worden
+//Update:
 
 class EndScreen {
   //declareren van een font
