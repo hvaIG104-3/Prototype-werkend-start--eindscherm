@@ -15,9 +15,9 @@ public class Player {
   }
 
   void draw() {
-//fill(255,20,0);
-//rect(posX,posY,w,h);
-image(plyr, posX,posY,w,h);
+    //fill(255,20,0);
+    //rect(posX,posY,w,h);
+    image(plyr, posX, posY, w, h);
   }
 
   void update() {

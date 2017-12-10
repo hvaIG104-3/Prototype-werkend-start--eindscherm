@@ -13,7 +13,7 @@ class EndScreen {
   PImage exitImage;
   PImage againImage;
   PImage scoreBoardImage;  
-PImage gameOverImage;
+  PImage gameOverImage;
 
   void setup() {
     //laad de afbeelding in het mapje met met naam startScreen.jpg
@@ -42,12 +42,12 @@ PImage gameOverImage;
 
   void draw() {
     //gameover    
-    image(gameOverImage, 214, 150, 371,58);
+    image(gameOverImage, 214, 150, 371, 58);
     /*textAlign(CENTER);
-    fill(255, 3, 3);
-    textFont(gameOver);
-    text("Game Over", 400, 225);
-    */
+     fill(255, 3, 3);
+     textFont(gameOver);
+     text("Game Over", 400, 225);
+     */
     //Score
     textFont(scoreText);
     text(round(punten), 400, 300);
@@ -55,13 +55,13 @@ PImage gameOverImage;
     image(againImage, 80, 425, 217, 102); //opnieuw
     image(exitImage, 430, 415, 243, 108); //exit
     image(scoreBoardImage, 193, 350, 415, 51);  //Scoreboard/highscore
-    
+
     /*textFont(endText);
-    //text("TRY AGAIN PRESS LEFT", 200, 450);
-    //text("EXIT PRESS RIGHT", 600, 450);
-    //text("SCOREBOARD PRESS S", 400, 400);
-    */
-   
+     //text("TRY AGAIN PRESS LEFT", 200, 450);
+     //text("EXIT PRESS RIGHT", 600, 450);
+     //text("SCOREBOARD PRESS S", 400, 400);
+     */
+
     if (keyCode == LEFT) {     //keycode left zorgt ervoor dat je terug gaat naar stage 1 (startscherm
       again = 1; //gaat terug naar startscherm
     } else if (keyCode == RIGHT) {//keycode left zorgt voor exit
