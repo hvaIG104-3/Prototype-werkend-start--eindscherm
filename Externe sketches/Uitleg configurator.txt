@@ -1,0 +1,2 @@
+De Configurator word gebruikt om van verschillende gamepads en zo de juiste toets aan het juiste object word gezet 
+oftewel hij configurated de controllers
