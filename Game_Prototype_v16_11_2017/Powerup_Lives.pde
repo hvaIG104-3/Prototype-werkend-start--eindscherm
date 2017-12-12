@@ -37,6 +37,3 @@ class Pu_lives {
     }
   }
 }
-
-void update() {
-}

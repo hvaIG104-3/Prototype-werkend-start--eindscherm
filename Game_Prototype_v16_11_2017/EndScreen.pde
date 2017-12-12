@@ -28,6 +28,11 @@ class EndScreen {
     againImage = loadImage("Images/try-again.png");
     scoreBoardImage = loadImage("Images/scoreboard.png");
     gameOverImage = loadImage("Images/game-over.png");
+    if (config != null) {
+      goTry = cont.getButton("goTryAgain");
+      goScore = cont.getButton("goScoreboard");
+      goExit = cont.getButton("goExit");
+    }
   }
 
   void init() {
@@ -56,23 +61,53 @@ class EndScreen {
     image(exitImage, 430, 415, 243, 108); //exit
     image(scoreBoardImage, 193, 350, 415, 51);  //Scoreboard/highscore
 
-    /*textFont(endText);
-     //text("TRY AGAIN PRESS LEFT", 200, 450);
-     //text("EXIT PRESS RIGHT", 600, 450);
-     //text("SCOREBOARD PRESS S", 400, 400);
-     */
+    getUserInput();
 
-    if (keyCode == LEFT) {     //keycode left zorgt ervoor dat je terug gaat naar stage 1 (startscherm
-      again = 1; //gaat terug naar startscherm
-    } else if (keyCode == RIGHT) {//keycode left zorgt voor exit
-      exit(); //
-    } else if (keyCode == 'S') { //keycode S zorgt ervoor dat naar stage 4 (scoreboard) gaat
-      again = 2;
-    }
     //stopt intro sound//
     file.stop();
   }
 
-  void update() {
+  void getUserInput() {
+    if (config != null) {
+      boolean tryAgain = goTry.pressed() || keyCode == LEFT ;
+      if (tryAgain == true) {
+        again = 1;
+      }
+
+      boolean exit = goExit.pressed();
+      if (exit == true) {
+        exit();
+      }
+
+      boolean highScore = goScore.pressed();
+      if (highScore == true) {
+        again = 2;
+      }
+    } else {
+      boolean tryAgain = keyCode == LEFT ;
+      if (tryAgain == true) {
+        again = 1;
+      }
+
+      boolean exit = keyCode == RIGHT;
+      if (exit == true) {
+        exit();
+      }
+
+      boolean highScore = keyCode == 'S';
+      if (highScore == true) {
+        again = 2;
+      } 
+      /*
+  else if (controller() == false) {
+       if (keyCode == LEFT) {     //keycode left zorgt ervoor dat je terug gaat naar stage 1 (startscherm
+       again = 1; //gaat terug naar startscherm
+       } else if (keyCode == RIGHT) {//keycode left zorgt voor exit
+       exit(); //
+       } else if (keyCode == 'S') { //keycode S zorgt ervoor dat naar stage 4 (scoreboard) gaat
+       again = 2;
+       }
+       */
+    }
   }
 }

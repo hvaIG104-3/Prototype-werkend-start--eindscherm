@@ -6,6 +6,12 @@ public class Player {
   int clr;
   int direction;
 
+  void setup() {
+    if (config != null) {
+      move = cont.getHat("move");
+    }
+  }
+
   void init() {
     posX = 10;
     posY = height / 2;
@@ -22,6 +28,8 @@ public class Player {
 
   void update() {
     posY += direction * 1;
+    getUserInput();      
+
     //Zorgt voor een particlesysteem bij de player
     jetpackParticle.emit(1);
     jetpackParticle.x0=posX+8;
@@ -30,5 +38,17 @@ public class Player {
 
   public void move (int tDir) {
     direction = tDir;
+  }
+
+
+  public void getUserInput() {
+    setup();
+    if (config != null) {
+      boolean omhoog = move.up();
+      posY += omhoog ? -5 * 1: 0;
+
+      boolean omlaag = move.down();
+      posY += omlaag ? 5 * 1 : 0;
+    }
   }
 }

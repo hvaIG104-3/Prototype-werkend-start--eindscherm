@@ -19,10 +19,6 @@ class Score {
     }
   }
 
-  void reset() {
-    punten = 0;
-  }
-
   void update() {
   }
 }
