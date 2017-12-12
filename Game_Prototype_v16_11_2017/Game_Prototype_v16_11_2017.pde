@@ -5,6 +5,21 @@
 // Ik heb in Game_Prototype draw() ingericht in stages en heb de classes StartScreen en EndScreen aangemaakt (siebe)
 // Ik heb in de class Lives de exit vervangen voor stage=3 zodat bij game over naar Endscreen gaat
 // Map data is gesorteerd. voor images ("Images/naamImage"), voor Fonts ("Fonts/naamfonts"), voor .txt ("Data/Text/naam.txt")
+import processing.sound.*;
+//controller
+import org.gamecontrolplus.gui.*;
+import org.gamecontrolplus.*;
+import net.java.games.input.*;
+
+//controller
+ControlIO control;
+Configuration config;
+ControlDevice cont;
+ControlHat move;
+ControlButton startKnop;
+ControlButton goTry;
+ControlButton goExit;
+ControlButton goScore;
 
 ParticleSystem jetpackParticle = new ParticleSystem(width/2, height/2);
 Obstacles obstacle1[] =new Obstacles[100];
@@ -38,8 +53,6 @@ PImage pow4;
 PImage plyr;
 PImage startScreen;
 
-import processing.sound.*;
-
 //Sound Files//
 //sound 1//
 SoundFile file;
@@ -61,6 +74,7 @@ SoundFile file4;
 //Initialization of all classes
 void setup() {
   size(800, 600);
+  frameRate(60);
   background(51);
   player.init();
   lives.init();
@@ -86,9 +100,14 @@ void setup() {
   jetpackParticle.blendMode="add";
   jetpackParticle.framesToLive=53;
   points = punten;
-
-
-  //Deze loop zorgt ervoor dat er 10 objecten worden aangemaakt en geinitialiseerd.
+  
+  //controller
+  // Initialise the ControlIO
+  control = ControlIO.getInstance(this);
+  // Find a device that matches the configuration file
+  cont = control.getMatchedDevice("Controller");
+  
+    //Deze loop zorgt ervoor dat er 10 objecten worden aangemaakt en geinitialiseerd.
   for (int i = 0; i<100; i++) {
     obstacle1[i]=new Obstacles();
     obstacle1[i].init();
@@ -136,8 +155,6 @@ void setup() {
 void updateGame() {
   player.update();
   lives.update();
-  start.update();
-  end.update();
   score.update();
   jetpackParticle.update();
 
@@ -150,11 +167,14 @@ void updateGame() {
 }
 
 void keyPressed() {
+  
   if (keyCode == UP) {
     player.move(-height/6);
   } else if (keyCode == DOWN) {
     player.move(height/6);
-  } else if (keyCode == 'P') {
+  }
+  
+  if (keyCode == 'P') {
     // noLoop(); zorgt ervoor dat de loop/draw wordt stopgezet met loop() gaat de loop/draw weer verder me waar het was voor de noLoop()
     if (looping)
       noLoop();
@@ -172,7 +192,6 @@ void keyPressed() {
 void keyReleased() {
   player.move(0);
 }
-
 
 void drawGame() {
   background(bg1);
@@ -254,6 +273,19 @@ void drawGame() {
   text("M = Sound OFF", 790, 131);
 }
 
+void reset(){
+ background(51);
+  player.init();
+  lives.init();
+  enemies.init();
+  exp.init();
+  slow.init();
+  livespu.init();
+  end.init();
+  scoreBoard.init();
+  punten = 0;
+}
+
 void draw() {
   //startscherm
   if (stage ==1) {
@@ -276,8 +308,7 @@ void draw() {
     end.setup();
     end.draw();
     if (again == 1) { //zorgt dat je word terug gezet naar beginscherm en opnieuw kan spelen
-      score.reset();
-      setup();
+      reset();
       stage =1;
     } else if (again ==2) {//zorgt ervoor dat je naar het Scoreboard gaat
       stage = 4;
