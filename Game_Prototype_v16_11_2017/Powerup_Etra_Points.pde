@@ -7,7 +7,7 @@ class Pu_exp {
     //De loop dat de boost in een random lane terechtkomen
 
     posY = lanes[(int) random(lanes.length)] + 35;
-      posX = random(800, width + 500);
+    posX = random(800, width + 500);
 
     h = 30;
     w = 30;

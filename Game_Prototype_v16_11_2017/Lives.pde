@@ -9,14 +9,14 @@ public class Lives {
   }
   void draw() {
     image(pow3, 70, 45);
-//Lives Display
-fill(0,0,0);
-textSize(130);
-text(lives.aLives, 72, 72);
+    //Lives Display
+    fill(0, 0, 0);
+    textSize(130);
+    text(lives.aLives, 72, 72);
 
-fill(255,0,0);
-textSize(120);
-text(lives.aLives, 70, 70);
+    fill(255, 0, 0);
+    textSize(120);
+    text(lives.aLives, 70, 70);
 
     //Als alle lives gebruikt zijn sluit het spel af. (Te veranderen naar eindscherm)
     if (aLives < 1) {
