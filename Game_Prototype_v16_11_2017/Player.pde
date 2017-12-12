@@ -7,7 +7,7 @@ public class Player {
   int direction;
 
   void setup() {
-    if (config != null) {
+    if (cont != null) {
       move = cont.getHat("move");
     }
   }
@@ -43,7 +43,7 @@ public class Player {
 
   public void getUserInput() {
     setup();
-    if (config != null) {
+    if (cont != null) {
       boolean omhoog = move.up();
       posY += omhoog ? -5 * 1: 0;
 

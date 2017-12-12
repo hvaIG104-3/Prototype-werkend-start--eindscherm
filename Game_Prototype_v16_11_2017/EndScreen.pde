@@ -28,7 +28,7 @@ class EndScreen {
     againImage = loadImage("Images/try-again.png");
     scoreBoardImage = loadImage("Images/scoreboard.png");
     gameOverImage = loadImage("Images/game-over.png");
-    if (config != null) {
+    if (cont != null) {
       goTry = cont.getButton("goTryAgain");
       goScore = cont.getButton("goScoreboard");
       goExit = cont.getButton("goExit");
@@ -68,7 +68,7 @@ class EndScreen {
   }
 
   void getUserInput() {
-    if (config != null) {
+    if (cont != null) {
       boolean tryAgain = goTry.pressed() || keyCode == LEFT ;
       if (tryAgain == true) {
         again = 1;

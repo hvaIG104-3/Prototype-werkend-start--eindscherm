@@ -17,7 +17,7 @@ class StartScreen {
     //koppelt de juiste font aan de juiste PFont (via tools>lettertype maken, kan je een .vlw bestand maken met een font en grote)
     title = loadFont("Fonts/titleFont.vlw");
     startText = loadFont("Fonts/startText.vlw");
-    if (config != null) {
+    if (cont != null) {
       startKnop = cont.getButton("start_knop");
     }
   }
@@ -45,7 +45,7 @@ class StartScreen {
   }
 
   void getUserInput() {
-    if (config != null) {
+    if (cont != null) {
       boolean startGame = startKnop.pressed();
       if (startGame == true) {
         stage = 2;
