@@ -25,7 +25,7 @@ class Pu_slow {
       posX = random(800, width + 500);
     }
     //Als de speler collide met de boost, dan vertraagt de tijd
-    if (!(player.posX + player.w < posX || player.posY > posY + h|| player.posY+player.h < posY)) {
+    if (!(pPosX + player.w < posX || pPosY > posY + h|| pPosY+player.h < posY)) {
       for (int i=0; i<100; i++) {
         obstacle1[i].velX = -2.5;
       }

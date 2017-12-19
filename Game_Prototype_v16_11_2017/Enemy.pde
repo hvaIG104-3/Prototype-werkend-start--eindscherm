@@ -25,7 +25,7 @@ public class Enemy {
       posX = width;
     }
     //Als de speler collide met de enemy, dan wordt de enemy weggehaald uit het scherm en verliest de speler een levenspunt.
-    if (player.posX + player.w >= posX && player.posY == posY) {
+    if (pPosX + player.w >= posX && pPosY == posY) {
       lives.aLives--;
       posX = width;
       posY = lanes[(int) random(lanes.length)];

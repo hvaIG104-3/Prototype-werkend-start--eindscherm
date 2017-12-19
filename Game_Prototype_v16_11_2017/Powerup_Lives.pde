@@ -27,7 +27,7 @@ class Pu_lives {
       lives.aLives=5;
     }
     //Als de speler collide met de boost, dan krijgt hij +1 levenspunt
-    if (!(player.posX + player.w < posX || player.posY > posY + h|| player.posY+player.h < posY)) {
+    if (!(pPosX + player.w < posX || pPosY > posY + h|| pPosY+player.h < posY)) {
       posY = lanes[(int) random(lanes.length)] + 35;
       posX = random(800, width + 500);
       lives.aLives++;

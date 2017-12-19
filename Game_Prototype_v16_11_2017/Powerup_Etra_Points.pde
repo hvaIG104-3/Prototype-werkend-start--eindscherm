@@ -25,7 +25,7 @@ class Pu_exp {
       posX = lanes2[(int) random(lanes2.length)];
     }
     //Als de speler collide met de boost, dan krijgt hij 250 punten
-    if (!(player.posX + player.w < posX || player.posY > posY + h|| player.posY+player.h < posY)) {
+    if (!(pPosX + player.w < posX || pPosY > posY + h|| pPosY+player.h < posY)) {
       punten += 250;
       posX = random(800, width + 500);
       posY = lanes[(int) random(lanes.length)] + 35;

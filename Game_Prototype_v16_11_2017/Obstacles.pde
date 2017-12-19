@@ -38,7 +38,7 @@ public class Obstacles {
     }
 
     //Als de speler een obstakel raakt, verliest hij een levenspunt en verdwijnt het obstakel van het scherm.
-    if (!(player.posX + player.w < posX || player.posY > posY + h|| player.posY+player.h < posY)) {
+    if (!(pPosX + player.w < posX || pPosY > posY + h|| pPosY+player.h < posY)) {
       lives.aLives--;
       posX = lanes2[(int) random(lanes2.length)];
       posY = lanes[(int) random(lanes.length)] +25;

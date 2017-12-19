@@ -11,6 +11,11 @@ class ScoreBoard {
     //geeft de grote aan de eerste 2 nullen weet ik niet precies wat is ik denk draai, de achterste 2 zijn de verhoudingen
     image(startScreen, 0, 0, 800, 600);
     highScoreText = loadFont("Fonts/highScoreText.vlw");
+    if (cont != null) {
+        goTry = cont.getButton("goTryAgain");
+        goScore = cont.getButton("goScoreboard");
+        goExit = cont.getButton("goExit");
+      }
   }
 
   void init() {
@@ -25,8 +30,8 @@ class ScoreBoard {
   void draw() {
     //zorgt ervoor dat de highscore word weergeven
     setup();
+    
     if (stage==4) {
-
       textFont(highScoreText);
       text("Highscore: ", width/2, 130);
       for (int i = 0; i < highScore.length; i++) {
@@ -36,7 +41,6 @@ class ScoreBoard {
       }
     }
   }
-
   void highScore() {
     //berekend de highscore en update het
     if (highScore.length<5)

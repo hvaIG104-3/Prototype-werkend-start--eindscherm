@@ -33,9 +33,12 @@ StartScreen start = new StartScreen();
 EndScreen end= new EndScreen();
 Score score = new Score();
 ScoreBoard scoreBoard = new ScoreBoard();
+Controls controls = new Controls();
 
 float punten;
 float points;
+float pPosX;
+float pPosY;
 int stage = 1;
 int again;
 int numObjectBegin = 10;
@@ -82,7 +85,6 @@ void setup() {
   exp.init();
   slow.init();
   livespu.init();
-  end.init();
   scoreBoard.init();
   jetpackParticle= new ParticleSystem(width/2, height/2);
   jetpackParticle.spreadFactor=0.3916084;
@@ -100,14 +102,15 @@ void setup() {
   jetpackParticle.blendMode="add";
   jetpackParticle.framesToLive=53;
   points = punten;
-  
+
   //controller
   // Initialise the ControlIO
   control = ControlIO.getInstance(this);
   // Find a device that matches the configuration file
   cont = control.getMatchedDevice("Controller");
-  
-    //Deze loop zorgt ervoor dat er 10 objecten worden aangemaakt en geinitialiseerd.
+  if (cont != null) {
+  }
+  //Deze loop zorgt ervoor dat er 10 objecten worden aangemaakt en geinitialiseerd.
   for (int i = 0; i<100; i++) {
     obstacle1[i]=new Obstacles();
     obstacle1[i].init();
@@ -158,37 +161,31 @@ void updateGame() {
   score.update();
   jetpackParticle.update();
 
-  if (player.posY < 0) {
-    player.posY = 0;
+  if (pPosY < 0) {
+    pPosY = 0;
   }
-  if (player.posY > height-100) {
-    player.posY = height-100;
+  if (pPosY > height-100) {
+    pPosY = height-100;
   }
 }
 
 void keyPressed() {
-  
   if (keyCode == UP) {
-    player.move(-height/6);
-  } else if (keyCode == DOWN) {
-    player.move(height/6);
+    player.move(-height/6 * 1);
   }
-  
-  if (keyCode == 'P') {
+  if (keyCode == DOWN) {
+    player.move(height/6 * 1);
+  }
+
+  if (keyCode == 'P') {    
     // noLoop(); zorgt ervoor dat de loop/draw wordt stopgezet met loop() gaat de loop/draw weer verder me waar het was voor de noLoop()
-    if (looping)
+    if (looping) {
       noLoop();
+    }
   } else if (keyCode == 'R') {
     loop();
-  } else if (keyCode =='E') {
-    exit();
-  } else if (keyCode =='M') { //stopt de muziek
-    file.stop();
-  } else if (keyCode == 'Q') { //zorgt dat je doorgaat naar eindscherm
-    stage = 3;
   }
 }
-
 void keyReleased() {
   player.move(0);
 }
@@ -273,20 +270,21 @@ void drawGame() {
   text("M = Sound OFF", 790, 131);
 }
 
-void reset(){
- background(51);
+void reset() {
+  background(51);
   player.init();
   lives.init();
   enemies.init();
   exp.init();
   slow.init();
   livespu.init();
-  end.init();
   scoreBoard.init();
   punten = 0;
 }
 
 void draw() {
+  controls.keyPressed();
+  controls.getUserInput();
   //startscherm
   if (stage ==1) {
     //haalt de setup en draw uit StartScreen
@@ -313,14 +311,14 @@ void draw() {
     } else if (again ==2) {//zorgt ervoor dat je naar het Scoreboard gaat
       stage = 4;
     }
-    //scoreboard/highscore
-    if (stage == 4) {
-      score.draw();
-      scoreBoard.highScore();
-      scoreBoard.draw();
-      if (again ==3) {//zorgt ervoor dat je terugkeert naar eindscherm
-        stage = 3;
-      }
+  }
+  //scoreboard/highscore
+  if (stage == 4) {
+    score.draw();
+    scoreBoard.highScore();
+    scoreBoard.draw();
+    if (again ==3) {//zorgt ervoor dat je terugkeert naar eindscherm
+      stage = 3;
     }
   }
 }
