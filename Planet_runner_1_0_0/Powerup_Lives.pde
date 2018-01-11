@@ -33,7 +33,7 @@ class Pu_lives {
       }
 
       //sound effect//
-      file3.play();
+      soundLives.play();
     }
   }
 }

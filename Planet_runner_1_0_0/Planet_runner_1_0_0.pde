@@ -55,20 +55,15 @@ PImage startScreen;
 //Sound Files//
 //sound 1//
 SoundFile file;
-//String audioName1 = "starts.mp3";
-//String path;
 //sound 2//
 SoundFile file2;
-//String audioName2 = "loopt.mp3";
-//String path2;
 //sound 3//
-SoundFile file3;
-//String audioName3 = "beep.mp3";
-//String path3;
+SoundFile soundSlow;
 //sound 4//
 SoundFile file4;
-//String audioName4 = "bop.wav";
-//String path4;
+SoundFile soundCoin;
+SoundFile soundLives;
+
 
 //Initialization of all classes
 void setup() {
@@ -134,21 +129,21 @@ void setup() {
 
   //inladen van soundfile uit de main map//
   //sound 1//
-  //path = sketchPath(audioName1);
-  //file = new SoundFile(this, path);
+
   file = new SoundFile(this, "Sound/starts.mp3");
+  
   //sound 2//
-  // path2 = sketchPath(audioName2);
   file2 = new SoundFile(this, "Sound/loopt.mp3");
+  
   //sound 2 start//
   file2.play();
 
   //sound 3//
-  //path3 = sketchPath(audioName3);
-  file3 = new SoundFile(this, "Sound/beep.mp3");
+  soundSlow = new SoundFile(this, "Sound/slow.mp3");
+  soundCoin = new SoundFile(this, "Sound/coin.wav");
+  soundLives = new SoundFile(this,"Sound/Lives.wav");
 
   //sound 4//
-  //path4 = sketchPath(audioName4);
   file4 = new SoundFile(this, "Sound/bop.wav");
 }
 
