@@ -37,6 +37,7 @@ public class Lives {
       stage = 3; 
       //reset het aantal levens 
       aLives = 3;
+      scoreBoard.highScore();
     }
   }
   void update() {
