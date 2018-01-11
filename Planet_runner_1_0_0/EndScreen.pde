@@ -1,4 +1,6 @@
 //class zorgt ervoor dat je bij game over een endscreen hebt met mogelijke meer keuzes
+//Update: Heb de tekst vervangen door afbeeldingen gemaakt via: https://textcraft.net/ Tekst kan terug gezet worden
+
 //op dit moment alleen keuze voor terug naar startscreen.
 
 //Update:
@@ -8,6 +10,7 @@ class EndScreen {
   PFont gameOver;
   PFont endText; 
   PFont scoreText;
+  PFont score;
 
   //declareren van afbeeldingen
   PImage exitImage;
@@ -22,8 +25,7 @@ class EndScreen {
     image(startScreen, 0, 0, 800, 600);
 
     //koppelt de juiste font aan de juiste PFont (via tools>lettertype maken, kan je een .vlw bestand maken met een font en grote)
-    gameOver = loadFont("Fonts/gameOverFont.vlw");
-    endText = loadFont("Fonts/endTextFont.vlw");
+    score = loadFont("Fonts/score.vlw");
     scoreText = loadFont("Fonts/scoreTextFont.vlw");
     exitImage = loadImage("Images/exit.png");
     againImage = loadImage("Images/try-again.png");
@@ -35,7 +37,8 @@ class EndScreen {
     //gameover    
     image(gameOverImage, 214, 150, 371, 58);
     //Score
-    textFont(scoreText);
+    fill(#FFB51F);
+    textFont(score);
     text(round(punten), 400, 300);
     //opties
     image(againImage, 80, 425, 217, 102); //opnieuw

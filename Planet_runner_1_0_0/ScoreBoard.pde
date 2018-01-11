@@ -3,6 +3,8 @@ class ScoreBoard {
   String scoreList;
   //declareren van een Font
   PFont highScoreText;
+  
+  PImage topscore;
 
   void setup() {
     //zorgt voor achtergrond
@@ -12,13 +14,13 @@ class ScoreBoard {
     image(startScreen, 0, 0, 800, 600);
     highScoreText = loadFont("Fonts/highScoreText.vlw");
     highScore = loadStrings("Data/Text/scoreBoard.txt");
+    topscore = loadImage("Images/highscore.png");
   }
 
   void draw() {
     //zorgt ervoor dat de highscore word weergeven
     setup();
-    textFont(highScoreText);
-    text("Highscore: ", width/2, 130);
+   image(topscore, 220, 75, 347, 67);
     for (int i = 0; i < highScore.length; i++) {
       textAlign(CENTER);
       textSize(60);

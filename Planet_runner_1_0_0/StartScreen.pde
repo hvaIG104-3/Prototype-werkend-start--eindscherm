@@ -4,8 +4,10 @@ class StartScreen {
   //declareert startscreen als afbeelding 
   PImage startScreen;
   //declareert verschillende PFont (PFont is font class voor Processing
-  PFont title;
+  PFont titleText;
   PFont startText;
+  PImage title;
+  PImage start;
 
 
 
@@ -15,18 +17,14 @@ class StartScreen {
     //geeft de grote aan de eerste 2 nullen weet ik niet precies wat is ik denk draai, de achterste 2 zijn de verhoudingen
     image(startScreen, 0, 0, 800, 600);
     //koppelt de juiste font aan de juiste PFont (via tools>lettertype maken, kan je een .vlw bestand maken met een font en grote)
-    title = loadFont("Fonts/titleFont.vlw");
+    titleText = loadFont("Fonts/titleFont.vlw");
     startText = loadFont("Fonts/startText.vlw");
+    title = loadImage("Images/title.png");
+    start = loadImage("Images/start.png");
   }
 
   void draw() {
-    // zorgt er voordat de text in uitlijnd in midden
-    textAlign(CENTER);
-    // geeft text weer ("text", X-coordinaat, Y_coordinaat)
-    textFont(title);
-    fill(255, 3, 3);
-    text("Planet-runner", 400, 150);
-    textFont(startText);
-    text("Press Space key to start", 400, 400);
+    image(title, 0, 100, 800, 98);
+    image(start, 150, 350, 522, 53);
   }
 }
