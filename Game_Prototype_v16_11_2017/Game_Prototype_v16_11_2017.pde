@@ -160,6 +160,8 @@ void updateGame() {
   lives.update();
   score.update();
   jetpackParticle.update();
+  controls.keyPressed();
+  controls.getUserInput();
 
   if (pPosY < 0) {
     pPosY = 0;
@@ -186,6 +188,7 @@ void keyPressed() {
     loop();
   }
 }
+
 void keyReleased() {
   player.move(0);
 }
@@ -282,16 +285,45 @@ void reset() {
   punten = 0;
 }
 
+void startScreen() {
+  //haalt de setup en draw uit StartScreen
+  start.setup();
+  start.draw();
+  //zorgt er voor dat elkaar als game start je na game over eerst naar endscreen gaat
+  controls.keyPressed();
+  controls.getUserInput();
+}
+
+void endScreen() {
+  again = 0;
+  //haalt de setup en draw uit EndScreen
+  end.setup();
+  end.draw();
+  if (again == 1) { //zorgt dat je word terug gezet naar beginscherm en opnieuw kan spelen
+    reset();
+    stage =1;
+  } else if (again ==2) {//zorgt ervoor dat je naar het Scoreboard gaat
+    stage = 4;
+  }
+}
+
+void highScore() {
+  score.draw();
+  scoreBoard.highScore();
+  scoreBoard.draw();
+  if (again ==3) {//zorgt ervoor dat je terugkeert naar eindscherm
+    stage = 3;
+  }
+}
+
 void draw() {
   controls.keyPressed();
   controls.getUserInput();
   //startscherm
   if (stage ==1) {
-    //haalt de setup en draw uit StartScreen
-    start.setup();
-    start.draw();
-    //zorgt er voor dat elkaar als game start je na game over eerst naar endscreen gaat
+    startScreen();
   }
+
   //de game zelf
   if (stage ==2) {
     drawGame();
@@ -301,24 +333,10 @@ void draw() {
   }
   //Eindscherm
   if ( stage ==3) {
-    again = 0;
-    //haalt de setup en draw uit EndScreen
-    end.setup();
-    end.draw();
-    if (again == 1) { //zorgt dat je word terug gezet naar beginscherm en opnieuw kan spelen
-      reset();
-      stage =1;
-    } else if (again ==2) {//zorgt ervoor dat je naar het Scoreboard gaat
-      stage = 4;
-    }
+    endScreen();
   }
   //scoreboard/highscore
   if (stage == 4) {
-    score.draw();
-    scoreBoard.highScore();
-    scoreBoard.draw();
-    if (again ==3) {//zorgt ervoor dat je terugkeert naar eindscherm
-      stage = 3;
-    }
+    highScore();
   }
 }

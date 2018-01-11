@@ -93,8 +93,8 @@ class Controls {
         if (exit == true) { //sluit af
           exit();
         }
-        boolean highScore = goScore.pressed();
-        if (highScore == true) { //ga naar scoreboard
+        boolean scoreBoard = goScore.pressed();
+        if (scoreBoard == true) { //ga naar scoreboard
           stage = 4;
         }
       }
