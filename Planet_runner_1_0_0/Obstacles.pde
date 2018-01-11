@@ -41,6 +41,7 @@ public class Obstacles {
       lives.aLives--;
       posX = lanes2[(int) random(lanes2.length)];
       posY = lanes[(int) random(lanes.length)] +25;
+      soundObstacle.play();
     }
   }
 }

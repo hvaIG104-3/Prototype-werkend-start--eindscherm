@@ -31,7 +31,7 @@ public class Enemy {
       posY = lanes[(int) random(lanes.length)];
 
       //damage sound effect//
-      file4.play();
+      soundEnemy.play();
     }
   }
 }

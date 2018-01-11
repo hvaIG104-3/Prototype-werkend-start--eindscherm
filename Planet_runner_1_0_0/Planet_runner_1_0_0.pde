@@ -60,7 +60,8 @@ SoundFile file2;
 //sound 3//
 SoundFile soundSlow;
 //sound 4//
-SoundFile file4;
+SoundFile soundObstacle;
+SoundFile soundEnemy;
 SoundFile soundCoin;
 SoundFile soundLives;
 
@@ -144,7 +145,8 @@ void setup() {
   soundLives = new SoundFile(this,"Sound/Lives.wav");
 
   //sound 4//
-  file4 = new SoundFile(this, "Sound/bop.wav");
+  soundObstacle = new SoundFile(this, "Sound/obstacle.wav");
+  soundEnemy = new SoundFile(this, "Sound/enemy.flac");
 }
 
 //Updating all classes
