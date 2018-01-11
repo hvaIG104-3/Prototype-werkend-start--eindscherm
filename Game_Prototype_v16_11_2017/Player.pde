@@ -1,36 +1,27 @@
 public class Player {
 
+  float posX;
+  float posY;
   float h, w;
   int clr;
   int direction;
 
-  void setup() {
-    if (cont != null) {
-      move = cont.getHat("move");
-    }
-  }
-
   void init() {
-    pPosX = 10;
-    pPosY = height / 2;
+    posX = 10;
+    posY = height / 2;
     clr = color(255, 255, 0);
-    h = 99;
+    h = 100;
     w = 50;
   }
 
   void draw() {
-    //fill(255,20,0);
-    //rect(posX,posY,w,h);
-    image(plyr, pPosX, pPosY, w, h);
+//fill(255,20,0);
+//rect(posX,posY,w,h);
+image(plyr, posX,posY,w,h);
   }
 
   void update() {
-    pPosY += direction * 1;     
-
-    //Zorgt voor een particlesysteem bij de player
-    jetpackParticle.emit(1);
-    jetpackParticle.x0=pPosX+8;
-    jetpackParticle.y0=pPosY+70;
+    posY += direction * 1;
   }
 
   public void move (int tDir) {
