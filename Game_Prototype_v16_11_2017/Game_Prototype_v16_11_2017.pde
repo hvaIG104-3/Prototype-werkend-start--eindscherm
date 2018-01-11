@@ -85,7 +85,7 @@ void setup() {
   exp.init();
   slow.init();
   livespu.init();
-  scoreBoard.init();
+
   jetpackParticle= new ParticleSystem(width/2, height/2);
   jetpackParticle.spreadFactor=0.3916084;
   jetpackParticle.minSpeed=1.0;
@@ -281,7 +281,6 @@ void reset() {
   exp.init();
   slow.init();
   livespu.init();
-  scoreBoard.init();
   punten = 0;
 }
 
@@ -308,8 +307,6 @@ void endScreen() {
 }
 
 void highScore() {
-  score.draw();
-  scoreBoard.highScore();
   scoreBoard.draw();
   if (again ==3) {//zorgt ervoor dat je terugkeert naar eindscherm
     stage = 3;

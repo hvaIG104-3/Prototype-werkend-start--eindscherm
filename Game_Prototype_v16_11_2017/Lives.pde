@@ -22,6 +22,7 @@ public class Lives {
     if (aLives < 1) {
       stage = 3; 
       aLives =3;
+      scoreBoard.highScore();
       //Aantal levens = nooit groter dan 5
       if (aLives > 5) {
         aLives = 5;
