@@ -34,7 +34,7 @@ class Pu_slow {
       livespu.velX = -4;
 
       //sound effect//
-      file3.play();
+      soundSlow.play();
       posX = random(800, width + 500);
       posY = lanes[(int) random(lanes.length)] +35;
     }

@@ -31,7 +31,7 @@ class Pu_exp {
       posY = lanes[(int) random(lanes.length)] + 35;
 
       //sound effect//
-      file3.play();
+      soundCoin.play();
     }
   }
 }

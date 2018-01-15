@@ -3,6 +3,8 @@ class ScoreBoard {
   String scoreList;
   //declareren van een Font
   PFont highScoreText;
+  
+  PImage topscore;
 
   void setup() {
     //zorgt voor achtergrond
@@ -11,37 +13,23 @@ class ScoreBoard {
     //geeft de grote aan de eerste 2 nullen weet ik niet precies wat is ik denk draai, de achterste 2 zijn de verhoudingen
     image(startScreen, 0, 0, 800, 600);
     highScoreText = loadFont("Fonts/highScoreText.vlw");
-    if (cont != null) {
-      goTry = cont.getButton("goTryAgain");
-      goScore = cont.getButton("goScoreboard");
-      goExit = cont.getButton("goExit");
-    }
+    highScore = loadStrings("Data/Text/scoreBoard.txt");
+    topscore = loadImage("Images/highscore.png");
   }
-
-  void init() {
-    //geeft gegevens door aan de main
-    highScore = loadStrings("scoreBoard.txt");
-    if (again == 3) {
-      again = 3;
-    }
-  }
-
 
   void draw() {
     //zorgt ervoor dat de highscore word weergeven
     setup();
-
-    if (stage==4) {
-      textFont(highScoreText);
-      text("Highscore: ", width/2, 130);
-      for (int i = 0; i < highScore.length; i++) {
-        textAlign(CENTER);
-        textSize(60);
-        text(round(parseFloat(highScore[i])), width/2, 230 + 75*i);
-      }
+   image(topscore, 220, 75, 347, 67);
+    for (int i = 0; i < highScore.length; i++) {
+      textAlign(CENTER);
+      textSize(60);
+      text(round(parseFloat(highScore[i])), width/2, 230 + 75*i);
     }
   }
+
   void highScore() {
+    setup();
     //berekend de highscore en update het
     if (highScore.length<5)
     {
@@ -65,7 +53,7 @@ class ScoreBoard {
       {
         scoreList+=highScore[i]+" ";
       }
-      saveStrings("scoreBoard.txt", highScore);
+      saveStrings("Data/Text/scoreBoard.txt", highScore);
     }
   }
 }

@@ -13,6 +13,7 @@ ControlButton startKnop;
 ControlButton goTry;
 ControlButton goExit;
 ControlButton goScore;
+ControlButton goResume;
 
 //particles for Player
 ParticleSystem jetpackParticle = new ParticleSystem(width/2, height/2);
@@ -31,6 +32,7 @@ Score score = new Score();
 ScoreBoard scoreBoard = new ScoreBoard();
 Controls controls = new Controls();
 
+boolean pauze;
 float punten;
 float points;
 float pPosX;
@@ -53,11 +55,20 @@ PImage powPoints;
 PImage imgPlayer;
 PImage startScreen;
 PImage plasmabolt;
+PImage gameOptie;
+PImage gameOptieController;
 
 //Sound Files//
 SoundFile music;
 SoundFile file3;
 SoundFile file4;
+SoundFile soundSlow;
+SoundFile soundObstacle;
+SoundFile soundEnemy;
+SoundFile soundCoin;
+SoundFile soundLives;
+SoundFile soundGameOver;
+SoundFile soundIntro;
 
 //Initialization of all classes
 void setup() {
@@ -69,7 +80,6 @@ void setup() {
   exp.init();
   slow.init();
   livespu.init();
-  scoreBoard.init();
   bullet.init();
   jetpackParticle= new ParticleSystem(width/2, height/2);
   jetpackParticle.spreadFactor=0.3916084;
@@ -103,15 +113,12 @@ void setup() {
   colissionsObstacle.blendMode="add";
   colissionsObstacle.framesToLive=200;
 
-  points = punten;
-
   //controller
   // Initialise the ControlIO
   control = ControlIO.getInstance(this);
   // Find a device that matches the configuration file
-  cont = control.getMatchedDevice("Controller");
-  if (cont != null) {
-  }
+  cont = control.getMatchedDevice("/Controls/ps4Controller");
+
   //Deze loop zorgt ervoor dat er 25 objecten worden aangemaakt en geinitialiseerd.
   for (int i = 0; i<25; i++) {
     obstacle1[i]=new Obstacles();
@@ -139,11 +146,20 @@ void setup() {
   powPoints = loadImage("Images/powp.png");   
   imgPlayer = loadImage("Images/plyr.png");
   plasmabolt = loadImage("Images/plasmabolt.png");
+  gameOptie = loadImage("Images/gameOptie.png");
+  gameOptieController = loadImage("Images/gameOptieController.png");
 
   //inladen van soundfile uit de main map//
   music = new SoundFile(this, "Sound/startschermmusic.mp3");
   file3 = new SoundFile(this, "Sound/beep.mp3");
   file4 = new SoundFile(this, "Sound/bop.wav");
+  soundSlow = new SoundFile(this, "Sound/slow.mp3");
+  soundCoin = new SoundFile(this, "Sound/coin.wav");
+  soundLives = new SoundFile(this, "Sound/Lives.wav");
+  soundObstacle = new SoundFile(this, "Sound/obstacle.wav");
+  soundEnemy = new SoundFile(this, "Sound/enemy.flac");
+  soundGameOver = new SoundFile(this, "Sound/gameOver.wav");
+  soundIntro = new SoundFile(this, "Sound/introMusic.wav");
 }
 
 //Updating all classes
@@ -175,14 +191,6 @@ void keyPressed() {
   }
   if (keyCode == RIGHT) {
     player.moveHor (50);
-  }
-  if (keyCode == 'P') {    
-    // noLoop(); zorgt ervoor dat de loop/draw wordt stopgezet met loop() gaat de loop/draw weer verder me waar het was voor de noLoop()
-    if (looping) {
-      noLoop();
-    }
-  } else if (keyCode == 'R') {
-    loop();
   }
 }
 void keyReleased() {
@@ -279,10 +287,11 @@ void drawGame() {
   }
   textAlign(RIGHT);
   textSize(25);
-  text("P = Pause", 790, 52);
-  text("R = Resume", 790, 79);
-  text("E = Exit", 790, 106);
-  text("M = Sound OFF", 790, 131);
+  if (cont != null) {
+    image(gameOptieController, 650, 52, 143, 84);
+  } else {
+    image(gameOptie, 650, 52, 116, 83);
+  }
 }
 
 void reset() {
@@ -292,46 +301,64 @@ void reset() {
   exp.init();
   slow.init();
   livespu.init();
-  scoreBoard.init();
   punten = 0;
 }
 
-void draw() {
+void startScreen() {
+
+  //haalt de setup en draw uit StartScreen
+  start.setup();
+  start.draw();
+  //zorgt er voor dat elkaar als game start je na game over eerst naar endscreen gaat
   controls.keyPressed();
   controls.getUserInput();
-  //startscherm
-  if (stage ==1) {
-    //haalt de setup en draw uit StartScreen
-    start.setup();
-    start.draw();
-    //zorgt er voor dat elkaar als game start je na game over eerst naar endscreen gaat
+}
+
+void endScreen() {
+  again = 0;
+  //haalt de setup en draw uit EndScreen
+  end.setup();
+  end.draw();
+  if (again == 1) { //zorgt dat je word terug gezet naar beginscherm en opnieuw kan spelen
+    reset();
+    stage =1;
+  } else if (again ==2) {//zorgt ervoor dat je naar het Scoreboard gaat
+    stage = 4;
   }
-  //de game zelf
-  if (stage ==2) {
-    drawGame();
-    updateGame();
-    keyPressed();
-    keyReleased();
+}
+
+void highScore() {
+  scoreBoard.draw();
+  if (again ==3) {//zorgt ervoor dat je terugkeert naar eindscherm
+    stage = 3;
   }
-  //Eindscherm
-  if ( stage ==3) {
-    again = 0;
-    //haalt de setup en draw uit EndScreen
-    end.setup();
-    end.draw();
-    if (again == 1) { //zorgt dat je word terug gezet naar beginscherm en opnieuw kan spelen
-      reset();
-      stage =1;
-    } else if (again ==2) {//zorgt ervoor dat je naar het Scoreboard gaat
-      stage = 4;
+}
+
+void draw() {
+  pauze = false;
+  controls.keyPressed();
+  controls.getUserInput();
+
+  if (pauze == false) {
+    //startscherm
+    if (stage ==1) {
+      startScreen();
     }
-  }
-  //scoreboard/highscore
-  if (stage == 4) {
-    score.draw();    
-    scoreBoard.draw();
-    if (again ==3) {//zorgt ervoor dat je terugkeert naar eindscherm
-      stage = 3;
+
+    //de game zelf
+    if (stage ==2) {
+      drawGame();
+      updateGame();
+      keyPressed();
+      keyReleased();
+    }
+    //Eindscherm
+    if ( stage ==3) {
+      endScreen();
+    }
+    //scoreboard/highscore
+    if (stage == 4) {
+      highScore();
     }
   }
 }

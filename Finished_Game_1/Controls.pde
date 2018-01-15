@@ -1,6 +1,7 @@
 //deze class zorgt ervoor dat de input van de gebruiker wordt omgezet naar handelingen in de game
 
 class Controls {
+  int pauzeController;
   boolean omhoog;
   boolean omlaag;
 
@@ -12,9 +13,7 @@ class Controls {
       goExit = cont.getButton("goExit");
       startKnop = cont.getButton("start_knop");
       move = cont.getHat("move");
-      goTry = cont.getButton("goTryAgain");
-      goScore = cont.getButton("goScoreboard");
-      goExit = cont.getButton("goExit");
+      goResume = cont.getButton("goResume");
     }
   }
   void keyPressed() {
@@ -26,6 +25,14 @@ class Controls {
     }
     if (keyCode =='M') { //stopt de muziek
       music.stop();
+    }    
+    
+    if (keyCode == 'P') {
+      pauze = true;
+    }
+
+    if (keyCode == 'R') {
+      pauze = false;
     }
     //input voor startscherm
     if (stage == 1) {
@@ -63,15 +70,38 @@ class Controls {
       setup();
       // input voor startscherm
       if (stage == 1) {
-        boolean startGame = startKnop.pressed(); //start game
+
+        boolean startGame = goResume.pressed(); //start game
         if (startGame == true) {
           stage = 2;
           //sound 1 start//
           music.play();
+          //stopt intro sound//
+          //soundIntro.stop(); 
         }
       }
       //input voor game zelf, de player movement
       if (stage == 2) {
+        //handeling voor pauze
+        if (pauzeController ==1) {
+          pauze = true;
+        } else if (pauzeController ==2) {
+          pauze = false;
+        }
+        
+        //in game commands
+        if (startKnop.pressed()) {
+          pauzeController = 1;
+        }
+        if (goResume.pressed()) {
+          pauzeController = 2;
+        }
+        if (goExit.pressed()){
+          exit();
+        }
+        
+        
+        //player movement
         omhoog = move.up();
         pPosY += omhoog ? -5 * 1 : 0; 
 
@@ -80,16 +110,16 @@ class Controls {
       }
       //input voor eindscherm
       if (stage == 3) {
-        boolean tryAgain = goTry.pressed();
+        boolean tryAgain = move.left();
         if (tryAgain == true) { //speel opnieuw
           reset();
           stage =1;
         }
-        boolean exit = goExit.pressed();
+        boolean exit = move.right();
         if (exit == true) { //sluit af
           exit();
         }
-        boolean highScore = goScore.pressed();
+        boolean highScore = move.up();
         if (highScore == true) { //ga naar scoreboard
           stage = 4;
         }
