@@ -42,11 +42,7 @@ public class Player {
     jetpackParticle.emit(1);
     jetpackParticle.x0=pPosX+8;
     jetpackParticle.y0=pPosY+70;
-    if (keyCode == 'Q') {
-      if (!bullet.isFired) { // Only if it has NOT been fired yet...
-        bullet.fire(); // shoot the bullet
-      }
-    }
+    
   }
 
   public void move (int tDir) {

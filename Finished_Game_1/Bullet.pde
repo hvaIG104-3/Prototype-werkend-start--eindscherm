@@ -12,6 +12,9 @@ class Bullet {
   float ammobarw = 125;
   float ammobarposX = 15;
   float ammobarposY = 90;
+  
+  PImage schiet;
+  PImage schietController;
 
   void init() {
     posX = -1000;
@@ -21,6 +24,8 @@ class Bullet {
     isFired = false;
     ammo =0;
     timer = 0;
+    schiet = loadImage("Images/schiet.png");
+    schietController = loadImage("Images/schietController.png");
   }
 
   void update() {
@@ -45,8 +50,12 @@ class Bullet {
         ammo++;
         timer = 125;
         fill(255);
-        textSize(25);
-        text("Shoot with 'Q'!", 365, 110);
+        textSize(25);        
+        if (cont != null){
+        image(schietController, 195, 85, 165, 32);
+        } else {
+          image(schiet, 195, 85, 165, 32);
+        }
       }
       if (ammo >1) {
         ammo =1;

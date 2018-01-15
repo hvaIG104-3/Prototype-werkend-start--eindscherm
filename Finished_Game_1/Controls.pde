@@ -4,6 +4,8 @@ class Controls {
   int pauzeController;
   boolean omhoog;
   boolean omlaag;
+  boolean links;
+  boolean rechts;
 
   void setup() {
     // als er een controller is aangesloten declareert hij hier de verschillende knoppen
@@ -26,7 +28,7 @@ class Controls {
     if (keyCode =='M') { //stopt de muziek
       music.stop();
     }    
-    
+
     if (keyCode == 'P') {
       pauze = true;
     }
@@ -37,13 +39,18 @@ class Controls {
     //input voor startscherm
     if (stage == 1) {
       if (key == ' ' ) {
+        music.play();
         stage = 2;
         //sound 1 start//
-        music.play();
-      }
+              }
     }
     //input tijdens de game zelf (nog mee bezig werkend te krijgen
     if (stage == 2) {
+      if (keyCode == 'Q') {
+        if (!bullet.isFired) { // Only if it has NOT been fired yet...
+          bullet.fire(); // shoot the bullet
+        }
+      }
     }
     //input voor eindscherm
     if (stage == 3) {
@@ -77,7 +84,7 @@ class Controls {
           //sound 1 start//
           music.play();
           //stopt intro sound//
-          //soundIntro.stop(); 
+          //soundIntro.stop();
         }
       }
       //input voor game zelf, de player movement
@@ -88,7 +95,7 @@ class Controls {
         } else if (pauzeController ==2) {
           pauze = false;
         }
-        
+
         //in game commands
         if (startKnop.pressed()) {
           pauzeController = 1;
@@ -96,30 +103,42 @@ class Controls {
         if (goResume.pressed()) {
           pauzeController = 2;
         }
-        if (goExit.pressed()){
+        if (goExit.pressed()) {
           exit();
+        }   
+        if (goResume.pressed()) {
+          if (!bullet.isFired) { // Only if it has NOT been fired yet...
+            bullet.fire(); // shoot the bullet
+          }
         }
-        
-        
+
         //player movement
         omhoog = move.up();
         pPosY += omhoog ? -5 * 1 : 0; 
 
         omlaag = move.down();
         pPosY += omlaag ? 5 * 1 : 0;
+
+
+        links = move.left();
+        pPosX += links ? -5 * 1 : 0;
+
+        rechts = move.right();
+        pPosX += rechts ? 5 * 1 : 0;
       }
       //input voor eindscherm
       if (stage == 3) {
-        boolean tryAgain = move.left();
+
+        boolean tryAgain = goTry.pressed();
         if (tryAgain == true) { //speel opnieuw
           reset();
           stage =1;
         }
-        boolean exit = move.right();
+        boolean exit = goExit.pressed();
         if (exit == true) { //sluit af
           exit();
         }
-        boolean highScore = move.up();
+        boolean highScore = goScore.pressed();
         if (highScore == true) { //ga naar scoreboard
           stage = 4;
         }

@@ -40,7 +40,7 @@ class EndScreen {
     text(round(punten), 400, 300);
     //opties
     image(againImage, 80, 425, 217, 102); //opnieuw
-    image(exitImage, 430, 415, 243, 108); //exit
+    image(exitImage, 430, 425, 243, 108); //exit
     image(scoreBoardImage, 193, 350, 415, 51);  //Scoreboard/highscore
     music.stop();
   }
