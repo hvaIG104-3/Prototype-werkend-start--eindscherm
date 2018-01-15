@@ -1,0 +1,185 @@
+##########################################################################################
+                   Game Control Plus  - available devices
+                   --------------------------------------
+  ========================================================================
+  NAME :     Muis
+  Type :     Mouse
+  Port :     Unknown
+    Buttons (5)
+      Type     Name               Multiplier
+      button    Knop 0              -
+      button    Knop 1              -
+      button    Knop 2              -
+      button    Knop 3              -
+      button    Knop 4              -
+    Sliders (3)
+      Type     Name               Multiplier     Tolerance
+      slider    X-as                1.0            0.0            (relative)
+      slider    Y-as                1.0            0.0            (relative)
+      slider    Stuur               1.0            0.0            (relative)
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ========================================================================
+  NAME :     Toetsenbord
+  Type :     Keyboard
+  Port :     Unknown
+    Buttons (126)
+      Type     Name               Multiplier
+      button    ESC                 -
+      button    1                   -
+      button    2                   -
+      button    3                   -
+      button    4                   -
+      button    5                   -
+      button    6                   -
+      button    7                   -
+      button    8                   -
+      button    9                   -
+      button    0                   -
+      button    -                   -
+      button    =                   -
+      button    BACKSPACE           -
+      button    TAB                 -
+      button    Q                   -
+      button    W                   -
+      button    E                   -
+      button    R                   -
+      button    T                   -
+      button    Y                   -
+      button    U                   -
+      button    I                   -
+      button    O                   -
+      button    P                   -
+      button    [                   -
+      button    ]                   -
+      button    ENTER               -
+      button    CTRL                -
+      button    A                   -
+      button    S                   -
+      button    D                   -
+      button    F                   -
+      button    G                   -
+      button    H                   -
+      button    J                   -
+      button    K                   -
+      button    L                   -
+      button    ;                   -
+      button    ACUTE/CEDILLA       -
+      button    GRAVE               -
+      button    SHIFT               -
+      button    \                   -
+      button    Z                   -
+      button    X                   -
+      button    C                   -
+      button    V                   -
+      button    B                   -
+      button    N                   -
+      button    M                   -
+      button    ,                   -
+      button    .                   -
+      button    /                   -
+      button    RIGHT SHIFT         -
+      button    *                   -
+      button    ALT                 -
+      button    SPACE               -
+      button    CAPSLOCK            -
+      button    F1                  -
+      button    F2                  -
+      button    F3                  -
+      button    F4                  -
+      button    F5                  -
+      button    F6                  -
+      button    F7                  -
+      button    F8                  -
+      button    F9                  -
+      button    F10                 -
+      button    Num Lock            -
+      button    SCROLL LOCK         -
+      button    NUM 7               -
+      button    NUM 8               -
+      button    NUM 9               -
+      button    -                   -
+      button    NUM 4               -
+      button    NUM 5               -
+      button    NUM 6               -
+      button    +                   -
+      button    NUM 1               -
+      button    NUM 2               -
+      button    NUM 3               -
+      button    NUM 0               -
+      button    NUM DECIMAL         -
+      button    \                   -
+      button    F11                 -
+      button    F12                 -
+      button    Prev Track          -
+      button    Volgend nummer      -
+      button    NUM ENTER           -
+      button    Right Ctrl          -
+      button    Dempen              -
+      button    Rekenmachine        -
+      button    Afspelen/onderbreken-
+      button    Media stoppen       -
+      button    Volume -            -
+      button    Volume +            -
+      button    Web/Start           -
+      button    NUM DIVIDE          -
+      button    Prnt Scrn           -
+      button    RIGHT ALT           -
+      button    Pause               -
+      button    HOME                -
+      button    UP                  -
+      button    PGUP                -
+      button    LEFT                -
+      button    RIGHT               -
+      button    END                 -
+      button    DOWN                -
+      button    PGDOWN              -
+      button    INSERT              -
+      button    DELETE              -
+      button    Left Windows        -
+      button    Right Windows       -
+      button    Application         -
+      button    Energie             -
+      button    Slaapstand          -
+      button    Actief              -
+      button    Zoeken              -
+      button    Favorieten          -
+      button    Vernieuwen          -
+      button    Web stoppen         -
+      button    Vooruit             -
+      button    Terug               -
+      button    Deze computer       -
+      button    E-mail              -
+      button    Media               -
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ========================================================================
+  NAME :     Wireless Controller
+  Type :     Stick
+  Port :     Unknown
+    Buttons (15)
+      Type     Name               Multiplier
+      hat       Hat-schakelaar      1.0            
+      button    Knop 0              -
+      button    Knop 1              -
+      button    Knop 2              -
+      button    Knop 3              -
+      button    Knop 4              -
+      button    Knop 5              -
+      button    Knop 6              -
+      button    Knop 7              -
+      button    Knop 8              -
+      button    Knop 9              -
+      button    Knop 10             -
+      button    Knop 11             -
+      button    Knop 12             -
+      button    Knop 13             -
+    Sliders (6)
+      Type     Name               Multiplier     Tolerance
+      slider    Z-draaiing          1.0            0.0            absolute
+      slider    Z-as                1.0            0.0            absolute
+      slider    Y-as                1.0            0.0            absolute
+      slider    X-as                1.0            0.0            absolute
+      slider    Y-draaiing          1.0            0.0            absolute
+      slider    X-draaiing          1.0            0.0            absolute
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+##########################################################################################
+

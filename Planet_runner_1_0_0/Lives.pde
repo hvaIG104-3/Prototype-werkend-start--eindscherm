@@ -38,6 +38,7 @@ public class Lives {
       //reset het aantal levens 
       aLives = 3;
       scoreBoard.highScore();
+      soundGameOver.play();
     }
   }
   void update() {
