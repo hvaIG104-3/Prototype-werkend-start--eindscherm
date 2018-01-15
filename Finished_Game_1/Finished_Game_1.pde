@@ -139,6 +139,7 @@ void setup() {
   lanes[5] = 500;
 
   // Images must be in the "data" directory to load correctly
+  startScreen = loadImage("Images/background1.jpg");
   imgEnemy = loadImage("Images/enemy.png");
   imgObstacle = loadImage("Images/obstacle.png"); 
   powTime = loadImage("Images/powt.png");  
@@ -156,7 +157,7 @@ void setup() {
   soundSlow = new SoundFile(this, "Sound/slow.mp3");
   soundCoin = new SoundFile(this, "Sound/coin.wav");
   soundLives = new SoundFile(this, "Sound/Lives.wav");
-  soundObstacle = new SoundFile(this, "Sound/obstacle.wav");
+  soundObstacle = new SoundFile(this, "Sound/obstacle.flac");
   soundEnemy = new SoundFile(this, "Sound/enemy.flac");
   soundGameOver = new SoundFile(this, "Sound/gameOver.wav");
   soundIntro = new SoundFile(this, "Sound/introMusic.wav");

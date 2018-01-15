@@ -19,8 +19,6 @@ class EndScreen {
   PImage gameOverImage;
 
   void setup() {
-    //laad de afbeelding in het mapje met met naam startScreen.jpg
-    startScreen = loadImage("Images/background1.jpg");
     //geeft de grote aan de eerste 2 nullen weet ik niet precies wat is ik denk draai, de achterste 2 zijn de verhoudingen
     image(startScreen, 0, 0, 800, 600);
 

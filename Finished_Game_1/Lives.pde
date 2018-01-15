@@ -36,6 +36,7 @@ public class Lives {
     if (aLives < 1) {
       stage = 3; 
       scoreBoard.highScore();
+      soundGameOver.play();
       //reset het aantal levens 
       aLives = 3;
     }

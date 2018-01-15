@@ -45,6 +45,7 @@ public class Obstacles {
         colissionsObstacle.x0=pPosX + player.w+ 20;
         colissionsObstacle.y0=pPosY+player.h/2;
       }
+      soundObstacle.play();
     }
 
     if (overlapsBullet()) {
@@ -52,6 +53,7 @@ public class Obstacles {
       bullet.timer =0;
       posX = lanes2[(int) random(lanes2.length)];
       posY = lanes[(int) random(lanes.length)] +25;
+      soundObstacle.play();
     }
   }
 
@@ -61,6 +63,6 @@ public class Obstacles {
       b = posY-bullet.posY, // vertical distance between player and enemy
       c = sqrt(a*a + b*b); // diagonal distance between player and enemy
     // if distance < radii combined, they overlap
-    return c < (w/2 + bullet.diameter/2);
+    return c < (w/2 + bullet.diameter/2);    
   }
 }
