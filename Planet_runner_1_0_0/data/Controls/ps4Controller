@@ -1,7 +1,0 @@
-game controller
-goTryAgain	Vierkant	1	BUTTON	Knop 0	0	0.0	0.0
-goScoreboard	Driehoek	1	BUTTON	Knop 3	0	0.0	0.0
-goExit	Rondje	1	BUTTON	Knop 2	0	0.0	0.0
-goResume	Kruisje	1	BUTTON	Knop 1	0	0.0	0.0
-move	Pijl toetsen	2	HAT	cooliehat: Hat-schakelaar	0	1.0	0.0
-start_knop	Start	1	BUTTON	Knop 9	0	0.0	0.0

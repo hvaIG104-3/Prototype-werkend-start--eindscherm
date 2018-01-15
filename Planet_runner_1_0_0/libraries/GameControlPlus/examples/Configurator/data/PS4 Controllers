@@ -1,7 +1,0 @@
-controller
-Bewegen	Speler bewegen	2	HAT	cooliehat: Hat-schakelaar	0	1.0	0.0
-START	start	1	BUTTON	Knop 9	0	0.0	0.0
-OPNIEUWE\	OPNIEUW	1	BUTTON	Knop 0	0	0.0	0.0
-EXIT	EXIT	1	BUTTON	Knop 2	0	0.0	0.0
-SCOREBOARD	SCOREBOARD	1	BUTTON	Knop 3	0	0.0	0.0
-PAUZE	PAUZE	1	BUTTON	Knop 8	0	0.0	0.0
