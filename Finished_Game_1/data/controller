@@ -1,0 +1,6 @@
+ps4 Controler
+move	beweging	2	HAT	cooliehat: Hat-schakelaar	0	0.5	0.0
+start_knop	start knop	1	BUTTON	Knop 9	0	0.0	0.0
+goScoreboard	ga naar scoreboard	1	BUTTON	Knop 3	0	0.0	0.0
+goTryAgain	OPnieuw proberen	1	BUTTON	Knop 0	0	0.0	0.0
+goExit	Sluit af	1	BUTTON	Knop 2	0	0.0	0.0
