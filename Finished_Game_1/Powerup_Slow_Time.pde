@@ -11,7 +11,7 @@ class Pu_slow {
 
     h = 30;
     w = 30;
-    velX = -5;
+    velX = -8;
   }
 
   void draw() {
@@ -27,12 +27,11 @@ class Pu_slow {
     //Als de speler collide met de boost, dan vertraagt de tijd
     if (!(pPosX + player.w < posX || pPosY > posY + h|| pPosY+player.h < posY)) {
       for (int i=0; i<25; i++) {
-        obstacle1[i].velX = -3.5;
+        obstacle1[i].velX = -4;
       }
-      enemies.velX = -1.5;
-      velX = -2.5;
-      exp.velX = -2.5;
-      livespu.velX = -2.5;
+      velX = -4;
+      exp.velX = -4;
+      livespu.velX = -4;
 
       //sound effect//
       file3.play();
@@ -42,12 +41,11 @@ class Pu_slow {
     t++;
     if (t > 300) {
       for (int i=0; i < 25; i++) {
-        obstacle1[i].velX = -5;
+        obstacle1[i].velX = -8;
       }
-      enemies.velX = -2.5;
-      velX = -5;
-      exp.velX = -5;
-      livespu.velX = -5;
+      velX = -8;
+      exp.velX = -8;
+      livespu.velX = -8;
       t=0;
     }
   }

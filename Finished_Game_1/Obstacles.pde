@@ -21,8 +21,7 @@ public class Obstacles {
     h = 48; //De hoogte van het object
     w = 48; // De breedte van het object
 
-    velX = -5; //De snelheid waarmee de objecten bewegen
-
+    velX = -8; //De snelheid waarmee de objecten bewegen
   }
 
   void draw() {
@@ -37,10 +36,31 @@ public class Obstacles {
     }
 
     //Als de speler een obstakel raakt, verliest hij een levenspunt en verdwijnt het obstakel van het scherm.
-    if (!(pPosX + player.w < posX || pPosY > posY + h|| pPosY+player.h < posY)) {
+    if (!(pPosX + player.w < posX || pPosY > posY + h|| pPosY+player.h < posY|| posX +w< pPosX)) {
       lives.aLives--;
       posX = lanes2[(int) random(lanes2.length)];
       posY = lanes[(int) random(lanes.length)] +25;
+      for (int i=0; i< 25; i++) {
+        colissionsObstacle.emit(1);
+        colissionsObstacle.x0=pPosX + player.w+ 20;
+        colissionsObstacle.y0=pPosY+player.h/2;
+      }
     }
+
+    if (overlapsBullet()) {
+      bullet.init();
+      bullet.timer =0;
+      posX = lanes2[(int) random(lanes2.length)];
+      posY = lanes[(int) random(lanes.length)] +25;
+    }
+  }
+
+  boolean overlapsBullet() {
+    // Calculate the distance between the player and an enemy
+    float a = posX-bullet.posX, // horizontal distance between player and enemy
+      b = posY-bullet.posY, // vertical distance between player and enemy
+      c = sqrt(a*a + b*b); // diagonal distance between player and enemy
+    // if distance < radii combined, they overlap
+    return c < (w/2 + bullet.diameter/2);
   }
 }

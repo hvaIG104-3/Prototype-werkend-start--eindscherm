@@ -35,6 +35,7 @@ public class Lives {
     //Als alle lives gebruikt zijn wordt de speler naar het eindscherm gebracht
     if (aLives < 1) {
       stage = 3; 
+      scoreBoard.highScore();
       //reset het aantal levens 
       aLives = 3;
     }

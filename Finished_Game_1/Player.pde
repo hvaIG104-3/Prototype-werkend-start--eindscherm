@@ -3,6 +3,7 @@ public class Player {
   float h, w;
   int clr;
   int direction;
+  int hDirection;
 
   void setup() {
     if (cont != null) {
@@ -25,15 +26,33 @@ public class Player {
   }
 
   void update() {
-    pPosY += direction * 1;     
+    pPosY += direction * 1; 
+    pPosX += hDirection * 1;
+    
+    if(pPosX<0)
+    pPosX = 0;
+    if(pPosX >width/4)
+    pPosX = width/4;
+    if(pPosY > height)
+    pPosY = height;
+    if(pPosY < 0)
+    pPosY =0;
 
     //Zorgt voor een particlesysteem bij de player
     jetpackParticle.emit(1);
     jetpackParticle.x0=pPosX+8;
     jetpackParticle.y0=pPosY+70;
+    if (keyCode == 'Q') {
+      if (!bullet.isFired) { // Only if it has NOT been fired yet...
+        bullet.fire(); // shoot the bullet
+      }
+    }
   }
 
   public void move (int tDir) {
     direction = tDir;
+  }
+  public void moveHor(int hDir){
+  hDirection= hDir;
   }
 }

@@ -16,10 +16,11 @@ ControlButton goScore;
 
 //particles for Player
 ParticleSystem jetpackParticle = new ParticleSystem(width/2, height/2);
+ParticleSystem colissionsObstacle = new ParticleSystem(width/2, height/2);
 
 Obstacles obstacle1[] =new Obstacles[100];
+Bullet bullet = new Bullet();
 Player player = new Player();
-Enemy enemies = new Enemy();
 Pu_exp exp = new Pu_exp();        
 Pu_slow slow = new Pu_slow();
 Pu_lives livespu = new Pu_lives();
@@ -51,6 +52,7 @@ PImage powHealth;
 PImage powPoints;
 PImage imgPlayer;
 PImage startScreen;
+PImage plasmabolt;
 
 //Sound Files//
 SoundFile music;
@@ -64,11 +66,11 @@ void setup() {
   background(51);
   player.init();
   lives.init();
-  enemies.init();
   exp.init();
   slow.init();
   livespu.init();
   scoreBoard.init();
+  bullet.init();
   jetpackParticle= new ParticleSystem(width/2, height/2);
   jetpackParticle.spreadFactor=0.3916084;
   jetpackParticle.minSpeed=1.0;
@@ -84,6 +86,23 @@ void setup() {
   jetpackParticle.deathColor=color(206.0, 0.0, 0.0, 0.0);
   jetpackParticle.blendMode="add";
   jetpackParticle.framesToLive=53;
+
+  colissionsObstacle= new ParticleSystem(width/2, height/2);
+  colissionsObstacle.spreadFactor=1.0;
+  colissionsObstacle.minSpeed=1.0;
+  colissionsObstacle.maxSpeed=4.0;
+  colissionsObstacle.startVx=0.0;
+  colissionsObstacle.startVy=0.0069930553;
+  colissionsObstacle.particleShape="ellipse";
+  colissionsObstacle.emitterType="point";
+  colissionsObstacle.birthSize=15.538462;
+  colissionsObstacle.deathSize=31.461536;
+  colissionsObstacle.gravity=0.0;
+  colissionsObstacle.birthColor=color(255.0, 62.0, 0.0, 255.0);
+  colissionsObstacle.deathColor=color(255.0, 0.0, 0.0, 255.0);
+  colissionsObstacle.blendMode="add";
+  colissionsObstacle.framesToLive=200;
+
   points = punten;
 
   //controller
@@ -119,6 +138,7 @@ void setup() {
   powHealth = loadImage("Images/powh.png");  
   powPoints = loadImage("Images/powp.png");   
   imgPlayer = loadImage("Images/plyr.png");
+  plasmabolt = loadImage("Images/plasmabolt.png");
 
   //inladen van soundfile uit de main map//
   music = new SoundFile(this, "Sound/startschermmusic.mp3");
@@ -131,6 +151,8 @@ void updateGame() {
   player.update();
   lives.update();
   score.update();
+  bullet.update();
+  colissionsObstacle.update();
   jetpackParticle.update();
 
   if (pPosY < 0) {
@@ -148,7 +170,12 @@ void keyPressed() {
   if (keyCode == DOWN) {
     player.move(height/6 * 1);
   }
-
+  if (keyCode == LEFT) {
+    player.moveHor(-50);
+  }
+  if (keyCode == RIGHT) {
+    player.moveHor (50);
+  }
   if (keyCode == 'P') {    
     // noLoop(); zorgt ervoor dat de loop/draw wordt stopgezet met loop() gaat de loop/draw weer verder me waar het was voor de noLoop()
     if (looping) {
@@ -160,6 +187,7 @@ void keyPressed() {
 }
 void keyReleased() {
   player.move(0);
+  player.moveHor(0);
 }
 
 void drawGame() {
@@ -239,16 +267,16 @@ void drawGame() {
       obstacle1[i].draw();
     }
   }
-
-
-
-  enemies.draw();
   exp.draw();
   slow.draw();
   livespu.draw();
   lives.draw();
   score.draw();
   jetpackParticle.draw();
+  colissionsObstacle.draw();
+  if (bullet.isFired) {
+    bullet.draw();
+  }
   textAlign(RIGHT);
   textSize(25);
   text("P = Pause", 790, 52);
@@ -261,7 +289,6 @@ void reset() {
   background(51);
   player.init();
   lives.init();
-  enemies.init();
   exp.init();
   slow.init();
   livespu.init();
@@ -301,8 +328,7 @@ void draw() {
   }
   //scoreboard/highscore
   if (stage == 4) {
-    score.draw();
-    scoreBoard.highScore();
+    score.draw();    
     scoreBoard.draw();
     if (again ==3) {//zorgt ervoor dat je terugkeert naar eindscherm
       stage = 3;

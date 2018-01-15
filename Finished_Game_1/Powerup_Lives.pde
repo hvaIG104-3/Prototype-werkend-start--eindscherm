@@ -10,7 +10,7 @@ class Pu_lives {
 
     h = 30;
     w = 30;
-    velX = -5;
+    velX = -8;
   }
 
   void draw() {
